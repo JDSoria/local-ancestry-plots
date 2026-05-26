@@ -56,7 +56,7 @@ The exact repository layout is flexible, but the scripts need to know where thos
 
 This repository also includes the SLURM launchers used to run RFMix local ancestry inference:
 
-- `RunRFMix1X.sh`: submits one RFMix job per individual and chromosome for lcWGS/1X data.
+- `RunRFMix1X.sh`: submits one RFMix job per chromosome for lcWGS/1X data.
 - `RunRFMix30X.sh`: submits one RFMix job per chromosome for hcWGS/30X data.
 
 Run on the cluster with:
@@ -76,11 +76,13 @@ EM_ITERATIONS=1
 NUM_TREES=5
 ```
 
-The 1X launcher reads a list of individuals and submits one nested job for each individual/chromosome pair. Outputs are written as:
+The 1X launcher runs the combined lcWGS query VCF once per chromosome. Outputs are written as:
 
 ```text
-1X/<individual>/chr<CHR>/cromosomaPPieFinal<CHR>_<individual>.*
+1X/chr<CHR>/cromosomaPPieFinal<CHR>.*
 ```
+
+This avoids rerunning the same cohort-level query VCF once per individual. Individual-level tables can be generated downstream from the RFMix chromosome outputs.
 
 The 30X launcher submits one nested job per chromosome. Outputs are written as:
 
