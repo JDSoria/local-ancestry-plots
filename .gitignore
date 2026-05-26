@@ -21,3 +21,15 @@ Rplots.pdf
 # System files
 .DS_Store
 Thumbs.db
+
+# RFMix cluster logs and outputs
+logRFMix1X/
+logRFMix30X/
+MandarCromosomas.out
+MandarCromosomas.err
+*.out
+*.err
+*.log
+*.msp.tsv
+*.fb.tsv
+*.rfmix.Q

@@ -51,6 +51,53 @@ HC0.9_GAP/InputG<individual_id>.tsv
 
 The exact repository layout is flexible, but the scripts need to know where those input folders are located. Both scripts accept the base directory as an optional argument.
 
+
+## RFMix local ancestry pipeline
+
+This repository also includes the SLURM launchers used to run RFMix local ancestry inference:
+
+- `RunRFMix1X.sh`: submits one RFMix job per individual and chromosome for lcWGS/1X data.
+- `RunRFMix30X.sh`: submits one RFMix job per chromosome for hcWGS/30X data.
+
+Run on the cluster with:
+
+```bash
+sbatch RunRFMix1X.sh
+sbatch RunRFMix30X.sh
+```
+
+The scripts use Singularity to run `rfmix` and expose the main RFMix parameters near the top of the files:
+
+```bash
+CRF_SPACING=0.5
+RF_WINDOW=0.5
+GENERATIONS=11
+EM_ITERATIONS=1
+NUM_TREES=5
+```
+
+The 1X launcher reads a list of individuals and submits one nested job for each individual/chromosome pair. Outputs are written as:
+
+```text
+1X/<individual>/chr<CHR>/cromosomaPPieFinal<CHR>_<individual>.*
+```
+
+The 30X launcher submits one nested job per chromosome. Outputs are written as:
+
+```text
+30X/chr<CHR>/cromosomaPPieFinal<CHR>.*
+```
+
+Both scripts are parameterized with environment variables, so cluster-specific paths can be overridden without editing the scripts. For example:
+
+```bash
+BASE=/path/to/LocalAncestryMuestrasPiloto \
+SINGULARITY_IMAGE=/path/to/rfmix.sif \
+sbatch RunRFMix1X.sh
+```
+
+The original scripts contained accidental line breaks inside file paths. The versions included here keep paths and commands on valid shell lines and add checks for required input files before submitting chromosome jobs.
+
 ## Single-dataset mosaic
 
 Usage:
