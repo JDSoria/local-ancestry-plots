@@ -109,8 +109,8 @@ Rscript LocalAncestryMosaic.R <individual_id> <LC|HC> [base_directory]
 Example:
 
 ```bash
-Rscript LocalAncestryMosaic.R HG01976 LC /media/daniel/Espacio/NuevosBED
-Rscript LocalAncestryMosaic.R HG01976 HC /media/daniel/Espacio/NuevosBED
+Rscript LocalAncestryMosaic.R HG01976 LC /path/to/local-ancestry-data
+Rscript LocalAncestryMosaic.R HG01976 HC /path/to/local-ancestry-data
 ```
 
 Output examples:
@@ -131,7 +131,7 @@ Rscript LocalAncestryComparison.R <individual_id> [base_directory]
 Example:
 
 ```bash
-Rscript LocalAncestryComparison.R HG01976 /media/daniel/Espacio/NuevosBED
+Rscript LocalAncestryComparison.R HG01976 /path/to/local-ancestry-data
 ```
 
 Output example:
