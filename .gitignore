@@ -1,0 +1,23 @@
+# Generated figures and reports
+*.tiff
+*.tif
+*.pdf
+*.png
+
+# Large/local input datasets
+LC0.9_GAP/
+HC0.9_GAP/
+LC0.9/
+HC0.9/
+GAP/
+*_GAP/
+
+# R temporary files
+.Rhistory
+.RData
+.Rproj.user/
+Rplots.pdf
+
+# System files
+.DS_Store
+Thumbs.db
